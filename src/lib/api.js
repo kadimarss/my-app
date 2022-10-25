@@ -1,4 +1,5 @@
 const base = 'https://api.m3o.com/v1/user';
+//const base = 'https://af68a2a0b0.to.intercept.rest';
 
 
 async function send({method, path, data, token}) {
