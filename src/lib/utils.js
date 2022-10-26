@@ -6,7 +6,6 @@ export function post(endpoint, data) {
         headers: {
             'Content-Type': 'application/json'
         }
-
     }).then((r) => r.json())
         .then((r) => {
                 if ('code' in r && r.code > 399) alert(JSON.stringify(r))
