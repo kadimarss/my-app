@@ -9,7 +9,7 @@
     let password = ''
     let email = ''
     let id = ''
-
+    let users = []
     async function create(email, password, username) {
         const response = await post(`users/Create`, {
             email,
@@ -17,7 +17,6 @@
             username,
             "id": Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36)
         });
-
     }
 
     async function update(email, password, username, id) {
@@ -27,13 +26,28 @@
             username,
             id
         });
+    }
 
+    async function remove(id) {
+        try {
+            const response = await post(`users/Delete`, {
+                email,
+                password,
+                username,
+                id
+            });
+            console.log(users)
+            users = users.filter(element => element.id !== id);
+            console.log(users)
+        } catch (e) {
+            alert(JSON.stringify(e))
+        }
     }
 
     async function getUsers() {
         const response = await post('users/List')
-        console.log(response)
-        return response.users
+        users = response.users
+        return users
     }
 
     async function toggleModal(user, f) {
@@ -72,6 +86,7 @@
                     <td>{user.username}</td>
                     <td>{user.email}</td>
                     <button on:click={()=>toggleModal(user, update)} type="edit">Edit</button>
+                    <button on:click={()=>remove(user.id)} type="delete">Delete</button>
 
                 </tr>
             {/each}
@@ -80,7 +95,6 @@
 
     {/await}
 </div>
-
 
 {#if showEditModal}
     <Modal on:click>
