@@ -86,7 +86,7 @@
                     <td>{user.username}</td>
                     <td>{user.email}</td>
                     <button on:click={()=>toggleModal(user, update)} type="edit">Edit</button>
-                    <button on:click={()=>remove(user.id)} type="delete">Delete</button>
+                    <button onClick="window.location.reload()" on:click={()=>remove(user.id)} type="delete">Delete</button>
 
                 </tr>
             {/each}

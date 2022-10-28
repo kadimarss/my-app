@@ -34,5 +34,6 @@
                 bind:value={password}
         />
     </fieldset>
-    <button class="btn btn-lg btn-primary pull-xs-right" type="submit" name="Create">Create</button>
+    <button onClick="window.location.reload()" class="btn btn-lg btn-primary pull-xs-right"  type="submit" name="Create">Create</button>
+
 </form>
