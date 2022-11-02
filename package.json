@@ -5,13 +5,15 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"lint": "eslint ."
+		"lint": "eslint .",
+		"cy-dev": "start-test 3000 'cypress open'"
 	},
 	"devDependencies": {
 		"@fontsource/fira-mono": "^4.5.0",
 		"@neoconfetti/svelte": "^1.0.0",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
+		"cypress": "^10.11.0",
 		"eslint": "^8.16.0",
 		"eslint-plugin-svelte3": "^4.0.0",
 		"svelte": "^3.46.0",
