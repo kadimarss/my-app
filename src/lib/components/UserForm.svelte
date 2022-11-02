@@ -6,7 +6,7 @@
     export let id
 </script>
 <form on:submit|preventDefault={submitFunction(email, password, username, id)}>
-    <fieldset class="form-group">
+    <fieldset class="form-group form">
         <input
                 class="form-control form-control-lg"
                 type="email"
@@ -27,13 +27,13 @@
     </fieldset>
     <fieldset class="form-group">
         <input
-                class="form-control form-control-lg"
+                class="form-control form-control-lg password"
                 type="password"
                 required
                 placeholder="Password"
                 bind:value={password}
         />
     </fieldset>
-    <button onClick="window.location.reload()" class="btn btn-lg btn-primary pull-xs-right"  type="submit" name="Create">Create</button>
+    <button onClick="window.location.reload()" class="btn btn-lg btn-primary pull-xs-right create"  type="submit" name="Create">Create</button>
 
 </form>
