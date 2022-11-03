@@ -7,7 +7,8 @@
 		"preview": "vite preview",
 		"lint": "eslint .",
 		"cy-dev": "start-test 3000 'cypress open'",
-		"cy:open": "cypress open --config-file=cypress.config.js"
+		"cy:open": "cypress open --config-file=cypress.config.js",
+		"start": "npm run build && npm run preview"
 	},
 	"devDependencies": {
 		"@fontsource/fira-mono": "^4.5.0",
