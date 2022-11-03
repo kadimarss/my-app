@@ -3,9 +3,9 @@ describe('Testing api', () => {
         cy.visit('http://127.0.0.1:5173/users');
         cy.get('main > div > form > fieldset.form-group.form > input').click();
         cy.wait(1000);
-        cy.get('main > div > form > fieldset.form-group.form > input').type('koda@mail.com');
+        cy.get('main > div > form > fieldset.form-group.form > input').type('juust@mail.com');
         cy.wait(1000);
-        cy.get('main > div > form > fieldset:nth-child(2) > input').type('koda');
+        cy.get('main > div > form > fieldset:nth-child(2) > input').type('juust');
         cy.wait(1000);
         cy.get('.form-group:nth-child(3) > .form-control').click();
         cy.get('.form-group:nth-child(3) > .form-control').type('H0bun311!!');
@@ -21,13 +21,13 @@ describe('Testing api', () => {
         cy.get('form:nth-child(1) > .form-group:nth-child(1) > .form-control').click();
         cy.get('form:nth-child(1) > .form-group:nth-child(1) > .form-control').clear();
         cy.wait(1000);
-        cy.get('form:nth-child(1) > .form-group:nth-child(1) > .form-control').type('maja@mail.ee');
+        cy.get('form:nth-child(1) > .form-group:nth-child(1) > .form-control').type('maaja@mail.ee');
         cy.wait(1000);
         cy.get('div.modal > div > div > form > fieldset:nth-child(2) > input').click();
         cy.wait(1000);
         cy.get('div.modal > div > div > form > fieldset:nth-child(2) > input').clear();
         cy.wait(1000);
-        cy.get('div.modal > div > div > form > fieldset:nth-child(2) > input').type('maja');
+        cy.get('div.modal > div > div > form > fieldset:nth-child(2) > input').type('maaja');
         cy.get('div.modal input.password').click();
         cy.wait(1000);
         cy.get('div.modal input.password').clear();
