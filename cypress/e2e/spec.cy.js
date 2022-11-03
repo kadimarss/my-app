@@ -1,6 +1,6 @@
 describe('Testing api', () => {
     it('create user', () => {
-        cy.visit('http://127.0.0.1:5173/users');
+        cy.visit('http://127.0.0.1:4173/users');
         cy.get('main > div > form > fieldset.form-group.form > input').click();
         cy.wait(1000);
         cy.get('main > div > form > fieldset.form-group.form > input').type('kuusk@mail.com');
@@ -12,10 +12,10 @@ describe('Testing api', () => {
         cy.wait(1000);
         cy.get('button[type=submit]').click();
         cy.wait(1000);
-        cy.url().should('contains', 'http://127.0.0.1:5173/users');
+        cy.url().should('contains', 'http://127.0.0.1:4173/users');
     })
     it('Edit user', () => {
-        cy.visit('http://127.0.0.1:5173/users');
+        cy.visit('http://127.0.0.1:4173/users');
         cy.get('button[type=submit]').click();
         cy.get('tr:nth-child(5) > button:nth-child(3)').click();
         cy.get('form:nth-child(1) > .form-group:nth-child(1) > .form-control').click();
@@ -35,12 +35,12 @@ describe('Testing api', () => {
         cy.get('div.modal input.password').type('Sisalikkk2!!!');
         cy.wait(1000);
         cy.get('div.modal > div > div > form > button').click();
-        cy.url().should('contains', 'http://127.0.0.1:5173/users');
+        cy.url().should('contains', 'http://127.0.0.1:4173/users');
     })
     it('Delete user', () => {
-        cy.visit('http://127.0.0.1:5173/users');
+        cy.visit('http://127.0.0.1:4173/users');
         cy.get('main > div > table > tbody > tr:nth-child(2) > button:nth-child(4)').click();
-        cy.url().should('contains', 'http://127.0.0.1:5173/users');
+        cy.url().should('contains', 'http://127.0.0.1:4173/users');
     })
 })
 
