@@ -3,13 +3,16 @@
     import Modal from "$lib/components/Modal.svelte";
     import UserForm from "$lib/components/UserForm.svelte";
 
+    export let data;
+
     let showEditModal = false;
     let modalFunction = null
     let username = ''
     let password = ''
     let email = ''
     let id = ''
-    let users = []
+    let users = data.users
+
     async function create(email, password, username) {
         const response = await post(`users/Create`, {
             email,
@@ -44,15 +47,12 @@
         }
     }
 
-    async function getUsers() {
-        const response = await post('users/List')
-        users = response.users
-        return users
-    }
 
     async function toggleModal(user, f) {
         showEditModal = !showEditModal
-        if (!showEditModal) {return}
+        if (!showEditModal) {
+            return
+        }
         username = user.username
         password = user.password
         email = user.email
@@ -69,31 +69,32 @@
 <div class="text-column">
     <h1>Users of this app</h1>
     <UserForm {username} {password} {email} submitFunction={create}/>
-    {#await getUsers()}
-        ...
-    {:then users}
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th>username</th>
-                <th>email</th>
-            </tr>
-            </thead>
-            <tbody>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>username</th>
+            <th>email</th>
+        </tr>
+        </thead>
+        <tbody>
+        {#if ('code' in data && data.code > 399)}
+            {alert(JSON.stringify(data))}
+        {:else}
             {#each users as user (user.id)}
                 <tr>
                     <td>{user.username}</td>
                     <td>{user.email}</td>
-                    <button on:click={()=>toggleModal(user, update)}  type="edit">Edit</button>
-                    <button onClick="window.location.reload()" on:click={()=>remove(user.id)}  type="delete">Delete</button>
+                    <button on:click={()=>toggleModal(user, update)} type="edit">Edit</button>
+                    <button onClick="window.location.reload()" on:click={()=>remove(user.id)} type="delete">Delete
+                    </button>
 
                 </tr>
             {/each}
-            </tbody>
-        </table>
-
-    {/await}
+        {/if}
+        </tbody>
+    </table>
 </div>
 
 {#if showEditModal}

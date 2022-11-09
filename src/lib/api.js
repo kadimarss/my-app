@@ -1,5 +1,5 @@
-const base = 'https://api.m3o.com/v1/user';
-//const base = 'https://af68a2a0b0.to.intercept.rest';
+//const base = 'https://api.m3o.com/v1/user';
+const base = 'https://af68a2a0b0.to.intercept.rest/v1/user';
 
 
 async function send({method, path, data, token}) {
@@ -11,7 +11,7 @@ async function send({method, path, data, token}) {
     }
 
 
-        opts.headers['Authorization'] = `Bearer YzU1MTA4NWYtMzZiNi00NjdkLWI4YmYtYmUyZWY5YjFmM2Jj`;
+        opts.headers['Authorization'] = `Bearer NTA2N2MyZDUtOWQ4YS00ZGNkLWEyNjktNjkxYmY0ZTg1YjRi`;
 
     console.log(`${base}/${path}`)
     console.log(opts)
