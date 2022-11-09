@@ -1,5 +1,8 @@
 name: With server
-on: [push]
+on: [ push ]
+services:
+  postgres:
+    ports: [ '5173:5173' ]
 jobs:
   cypress-run:
     runs-on: ubuntu-20.04
