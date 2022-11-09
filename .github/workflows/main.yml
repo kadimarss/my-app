@@ -1,8 +1,5 @@
 name: With server
 on: [ push ]
-services:
-  postgres:
-    ports: [ '5173:5173' ]
 jobs:
   cypress-run:
     runs-on: ubuntu-20.04
@@ -12,7 +9,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
-          start: npm start
+          start: npm run dev
 
 
 
