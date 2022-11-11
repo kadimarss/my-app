@@ -3,7 +3,7 @@
     export let password
     export let email
     export let submitFunction
-    export let id
+    export let id = null
 </script>
 <form on:submit|preventDefault={submitFunction(email, password, username, id)}>
     <fieldset class="form-group form">
@@ -34,6 +34,6 @@
                 bind:value={password}
         />
     </fieldset>
-    <button onClick="window.location.reload()" class="btn btn-lg btn-primary pull-xs-right create"  type="submit" name="Create">Create</button>
+    <button class="btn btn-lg btn-primary pull-xs-right create" type="submit" name="Create">Save</button>
 
 </form>

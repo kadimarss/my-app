@@ -19,7 +19,9 @@
             password,
             username,
             "id": Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36)
+
         });
+        users = [...users, response.account]
     }
 
     async function update(email, password, username, id) {
@@ -29,6 +31,14 @@
             username,
             id
         });
+        let user = users.find(element => element.id === id)
+        user.email = email
+        user.password = password
+        user.username = username
+        users = users
+        await toggleModal()
+
+
     }
 
     async function remove(id) {
@@ -39,14 +49,11 @@
                 username,
                 id
             });
-            console.log(users)
             users = users.filter(element => element.id !== id);
-            console.log(users)
         } catch (e) {
             alert(JSON.stringify(e))
         }
     }
-
 
     async function toggleModal(user, f) {
         showEditModal = !showEditModal
@@ -58,6 +65,7 @@
         email = user.email
         modalFunction = f
         id = user.id
+
     }
 
 </script>
@@ -69,7 +77,6 @@
 <div class="text-column">
     <h1>Users of this app</h1>
     <UserForm {username} {password} {email} submitFunction={create}/>
-
 
     <table class="table">
         <thead>
@@ -87,7 +94,7 @@
                     <td>{user.username}</td>
                     <td>{user.email}</td>
                     <button on:click={()=>toggleModal(user, update)} type="edit">Edit</button>
-                    <button onClick="window.location.reload()" on:click={()=>remove(user.id)} type="delete">Delete
+                    <button on:click={()=>remove(user.id)} type="delete">Delete
                     </button>
 
                 </tr>
