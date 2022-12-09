@@ -2,7 +2,6 @@
     import {post} from "$lib/utils.js";
     import Modal from "$lib/components/Modal.svelte";
     import UserForm from "$lib/components/UserForm.svelte";
-
     export let data;
 
     let showEditModal = false;
@@ -11,7 +10,7 @@
     let password = ''
     let email = ''
     let id = ''
-    let users = data.users
+    let users = data
 
     async function create(email, password, username) {
         const response = await post(`users/Create`, {
@@ -21,8 +20,21 @@
             "id": Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36)
 
         });
-        users = [...users, response.account]
+
+        users = [...users, response.body.account]
     }
+
+    // check if we are running in the browser
+    // if (typeof window !== 'undefined') {
+    //
+    //     const API_URL = import.meta.env.VITE_API_URL;
+    //
+    //     console.log(API_URL)
+    //     const connection = new WebSocket(API_URL)
+    //     connection.onmessage = function (event) {
+    //         // console.log(event.data)
+    //     }
+    // }
 
     async function update(email, password, username, id) {
         const response = await post(`users/Update`, {
@@ -40,6 +52,8 @@
 
 
     }
+
+    // console.log(data)
 
     async function remove(id) {
         try {
@@ -114,4 +128,5 @@
         </button>
     </Modal>
 {/if}
+
 

@@ -1,5 +1,8 @@
-const base = 'https://api.m3o.com/v1/user';
+//const base = 'https://api.m3o.com/v1/user';
 //const base = 'https://af68a2a0b0.to.intercept.rest/v1/user';
+import {Err} from "$lib/err.js";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 
 async function send({method, path, data, token}) {
@@ -11,25 +14,29 @@ async function send({method, path, data, token}) {
     }
 
 
-        opts.headers['Authorization'] = `Bearer NTY4MTI1MDYtNTQzNy00NTVjLTlmMGUtNjZmMGE2YjI0MDJm`;
+    opts.headers['Authorization'] = `Bearer NTY4MTI1MDYtNTQzNy00NTVjLTlmMGUtNjZmMGE2YjI0MDJm`;
 
-    console.log(`${base}/${path}`)
-    console.log(opts)
+    // console.log(`${API_URL}/${path}`)
+    // console.log(opts)
 
-    return fetch(`${base}/${path}`, opts)
-        .then((r) => r.text())
+    let code
+    return fetch(`${API_URL}/${path}`, opts)
+        .then((r) => {
+            code = r.status;
+            return r.text()
+        })
         .then((json) => {
+            let body = null
             try {
-                var resParsed = JSON.parse(json);
-
-                if (resParsed?.status === 'error') {
-                    console.log(`API response error from ${base}/${path}: ${json}`);
+                 body = JSON.parse(json);
+                if (body?.status === 'error') {
+                    console.log(`api.js: API response error from ${API_URL}/${path}: ${json}`);
                 }
-
-                return resParsed;
             } catch (err) {
-                return json;
+
+                console.log(`api.js: API response error from ${API_URL}/${path}: ${json}`);
             }
+            return {code, body};
         });
 }
 

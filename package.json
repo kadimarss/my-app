@@ -24,6 +24,8 @@
 	"type": "module",
 	"dependencies": {
 		"@sveltejs/adapter-node": "^1.0.0-next.100",
+		"express-ws": "^5.0.2",
+		"socket.io": "^4.5.3",
 		"svelte-modals": "^1.2.0"
 	}
 }
