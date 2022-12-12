@@ -1,8 +1,4 @@
-//const base = 'https://api.m3o.com/v1/user';
-//const base = 'https://af68a2a0b0.to.intercept.rest/v1/user';
-import {Err} from "$lib/err.js";
-
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = 'http://localhost:8080/api/user'
 
 async function send({method, path, data, token}) {
     const opts = {method, headers: {}};
@@ -48,18 +44,9 @@ async function send({method, path, data, token}) {
     }
 }
 
-export function get(path, token) {
-    return send({method: 'GET', path, token});
-}
+async function main() {
+    let foo = await send({method: 'POST', path:'Create', data:{}, token:''})
 
-export function del(path, token) {
-    return send({method: 'DELETE', path, token});
+    console.log(foo)
 }
-
-export function post(path, data, token) {
-    return send({method: 'POST', path, data, token});
-}
-
-export function put(path, data, token) {
-    return send({method: 'PUT', path, data, token});
-}
+main()

@@ -10,7 +10,7 @@
     let password = ''
     let email = ''
     let id = ''
-    let users = data
+    let users = data.body
 
     async function create(email, password, username) {
         const response = await post(`users/Create`, {
@@ -49,8 +49,6 @@
         user.username = username
         users = users
         await toggleModal()
-
-
     }
 
     // console.log(data)
@@ -79,8 +77,8 @@
         email = user.email
         modalFunction = f
         id = user.id
-
     }
+
 
 </script>
 <svelte:head>
@@ -104,6 +102,7 @@
             {alert(JSON.stringify(data))}
         {:else}
             {#each users as user (user.id)}
+
                 <tr>
                     <td>{user.username}</td>
                     <td>{user.email}</td>
